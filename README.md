@@ -1,4 +1,4 @@
-# PHP MySQL Library
+# PHP MySql Library
 A library to use mysqli database with php.
 
 ## MySqlConfig
