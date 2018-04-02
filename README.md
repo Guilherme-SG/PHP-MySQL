@@ -1,4 +1,4 @@
-# GSG MySQL Library
+# PHP MySQL Library
 A library to use mysqli database with php.
 
 ## MySqlConfig
