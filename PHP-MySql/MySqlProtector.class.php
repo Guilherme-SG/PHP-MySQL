@@ -7,7 +7,7 @@ class MySqlProtector {
 	}
 
 	public function arraySQLProtection(array &$array) {					
-		array_walk_recursive($array, 'stringSQLProtection');
+		array_walk_recursive($array, [$this, 'stringSQLProtection']);
 		return $array;
 	}
 

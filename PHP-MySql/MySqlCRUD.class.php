@@ -1,9 +1,11 @@
 <?php 
 class MySqlCRUD {
 	private $executer;
+	private $protector;
 
 	public function __construct(MySqlConfig $config = null) {
 		$this->executer = new MySqlExecuter($config);
+		$this->protector = new MySqlProtector(MySqlConnection::generate($config ? $config : new MySqlConfig()));
 	}
 
 	/**
@@ -20,7 +22,7 @@ class MySqlCRUD {
 	 * @return boolean
 	*/
 	public function insert($table, array $data){
-		$data = parent::arraySQLProtection($data);
+		$data = $this->protector->arraySQLProtection($data);
 
 		// Separate fields from the values
 		$fields = implode(', ', array_keys($data));
@@ -62,7 +64,7 @@ class MySqlCRUD {
 			return false;
 		}	
 		
-		return MySqlOrganizer::organizeData($result);
+		return MySqlOrganizer::organizeInAssociativeArray($result);
 	}	
 
 	/**
@@ -79,7 +81,7 @@ class MySqlCRUD {
 	 * @return boolean
 	*/
 	public function update($table, array $data, $where = null) {
-		$data = $this->executer->arraySQLProtection($data);
+		$data = $this->protector->arraySQLProtection($data);
 
 		foreach ($data as $key => $value) {
 			$fields[] = "{$key} = '{$value}'";
