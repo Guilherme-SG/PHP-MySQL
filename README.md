@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # PHP MySQL Library
+=======
+# PHP MySql Library
+>>>>>>> 395ba3b76ae2fb47cafc37fb35013aca2dbddac5
 A library to use mysqli database with php.
 
 ## MySqlConfig
