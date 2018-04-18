@@ -1,5 +1,3 @@
 {
-    "require": {
-        "monolog/monolog": "1.0.*"
-    }
+    "name": "guilherme-sg/php-mysql"
 }
