@@ -35,5 +35,4 @@ class MySqlConfig{
 	function getCharset() {
 		return $this->charset;
 	}				
-}
-?>		
+}?>

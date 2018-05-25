@@ -30,3 +30,31 @@ This class is responsable for organize query data.
 
 ## MySqlExceptions
 For while, I put exceptions here.
+
+# Usage
+
+```PHP
+$config = new MySqlConfig('host', 'username', 'password', 'database', 'charset');
+$crud = new MySqlCRUD($config);
+
+$data = [
+	"collum_name_1" => "value",
+	"collum_name_2" => "value",
+	"collum_name_3" => "value",
+	"collum_name_4" => "value",
+	"collum_name_5" => "value",
+];
+
+// Theses methods returns true or false
+$crud->insert("table", $insertData);
+$crud->update("table", $data, "clausule");
+$crud->delete("table", "clausule");
+
+// This method return false or a multidimensional associative array
+// register x field
+$result = $crud->read("table", "clausule", "fields");
+//-> $result[0][name] -> Guilherme
+//-> $result[0][password] -> 35634hijhidf34keok4o523
+//-> $result[1][name] -> Rose
+//-> $result[0][password] -> k34ok435sdfo4563634oko3k234ok2o
+``` 
