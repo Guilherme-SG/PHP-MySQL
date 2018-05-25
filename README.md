@@ -10,17 +10,16 @@ Another way to set connection configs is putting default configuration at the co
 This class makes the connection with database receiving a MySqlConfig object.
 Call MySqlConnection::generate() to get a database connection. If is not possible to make connection or define the charset the script will die().
 
-## MysqlExecuter
-This class executes queries and returns their results. It closes the connection when the object is destroyed, so
-don't worry about that.
+## MySqlExecuter
+This class executes queries and returns their results. It closes the connection when the object is destroyed, so don't worry about that.
 
 It also throws exceptions by each mysqli error.
 
 ## MySqlCRUD
-This class execute CRUD queries.
+This class builds CRUD queries and executes with a MySqlExecuter object. All methods are protected against SQL Injection
 
 ## MySqlProcedure
-This class call procedures.
+This class call procedures and returns their results. This class doesn't protect against SQL Injection, so use a MySqlProtector object to protect any data in procedure.
 
 ## MySqlProtector
 This class is responsable for protect data against SQL Injection.
@@ -30,6 +29,24 @@ This class is responsable for organize query data.
 
 ## MySqlExceptions
 For while, I put exceptions here.
+
+# Protector
+
+## Usage
+```PHP
+$config = new MySqlConfig('host', 'username', 'password', 'database', 'charset');
+$protector = new MySqlProtector($config);
+
+$dataArray = ["data", "'' or '1'='1'", "data"];
+$dataString = "'' or '1'='1'";
+
+$dataArray = $protector->arraySQLProtection($dataArray);
+$dataString = $protector->stringSQLProtection($dataString);
+```
+
+```PHP
+MySqlConfig('localhost', 'root', 'root', 'users', 'utf8');
+```
 
 # CRUD
 
@@ -108,4 +125,25 @@ $result = $crud->read("users", "where name = 'Yennifer'", "password");
 # Procedure
 
 ## Usage
+```PHP
+$config = new MySqlConfig('host', 'username', 'password', 'database', 'charset');
+$procedure = new MySqlProcedure($config);
+// Use this when the return is a dataset
+$procedure->callProcedure("procedure()");
+// Otherwise use this
+$procedure->callProcedureWithBooleanResult("procedure()");
+```
 ## Example
+```PHP
+$config = new MySqlConfig('localhost', 'root', 'root', 'users', 'utf8');
+$procedure = new MySqlProcedure($config);
+// Preferably use the same instance of MySqlConfig
+$protector = new MySqlProtector($config);
+
+$employee = "Lemos";
+$newSalary = 15700;
+
+$employee = $protector->stringSQLProtection($employee);
+$newSalary = $protector->stringSQLProtection($newSalary);
+$procedure->callProcedureWithBooleanResult("change_salary($employee, $newSalary)");
+```
