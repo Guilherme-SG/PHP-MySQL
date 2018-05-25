@@ -31,7 +31,9 @@ This class is responsable for organize query data.
 ## MySqlExceptions
 For while, I put exceptions here.
 
-# Usage
+# CRUD
+
+## Usage
 
 ```PHP
 $config = new MySqlConfig('host', 'username', 'password', 'database', 'charset');
@@ -46,15 +48,64 @@ $data = [
 ];
 
 // Theses methods returns true or false
-$crud->insert("table", $insertData);
+$crud->insert("table", $data);
 $crud->update("table", $data, "clausule");
 $crud->delete("table", "clausule");
 
-// This method return false or a multidimensional associative array
+// This method return false or a 2D associative array
 // register x field
 $result = $crud->read("table", "clausule", "fields");
+``` 
+## Example
+```PHP
+$config = new MySqlConfig('localhost', 'root', 'root', 'users', 'utf8');
+$crud = new MySqlCRUD($config);
+
+$insertData = [
+	"name" => "Guilherme",
+	"password" => "35634hijhidf34keok4o523"
+];
+
+$crud->insert("users", $insertData);
+// -> True
+
+$crud->insert("users", [
+	"name" => "Rose",
+	"password" => "k34ok435sdfo4563634oko3k234ok2o"
+]);
+// -> True
+
+$crud->insert("users", [
+	"name" => "James",
+	"password" => "555"
+]);
+// -> True
+
+$updateData = ["name" => "Yennifer"];
+$crud->update("users", $updateData, "where name = 'Rose'");
+// -> True
+
+$crud->delete("users", "where password = '555'");
+// -> True
+
+// Select all
+$result = $crud->read("users");
 //-> $result[0][name] -> Guilherme
 //-> $result[0][password] -> 35634hijhidf34keok4o523
-//-> $result[1][name] -> Rose
+//-> $result[1][name] -> Yennifer
+//-> $result[1][password] -> k34ok435sdfo4563634oko3k234ok2o
+
+// Select all names only
+$result = $crud->read("users", null, "name");
+//-> $result[0][name] -> Guilherme
+//-> $result[1][name] -> Yennifer
+
+// Select Yennifer's passowrd
+$result = $crud->read("users", "where name = 'Yennifer'", "password");
 //-> $result[0][password] -> k34ok435sdfo4563634oko3k234ok2o
-``` 
+```
+
+# Procedure
+
+## Usage
+## Example
