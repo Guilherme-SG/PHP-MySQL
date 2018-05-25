@@ -1,6 +1,6 @@
 # PHP-MySql 
 
-PHP-MySql is library to use mysqli database with php.
+PHP-MySql is library to make it easy to use mysql
 
 ## MySqlConfig
 This class is required to config database connection, so you have to pass a instance of this classe to MySqlConnection object.
