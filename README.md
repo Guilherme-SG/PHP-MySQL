@@ -57,11 +57,11 @@ $config = new MySqlConfig('host', 'username', 'password', 'database', 'charset')
 $crud = new MySqlCRUD($config);
 
 $data = [
-	"collum_name_1" => "value",
-	"collum_name_2" => "value",
-	"collum_name_3" => "value",
-	"collum_name_4" => "value",
-	"collum_name_5" => "value",
+	"column_name_1" => "value",
+	"column_name_2" => "value",
+	"column_name_3" => "value",
+	"column_name_4" => "value",
+	"column_name_5" => "value",
 ];
 
 // Theses methods returns true or false
