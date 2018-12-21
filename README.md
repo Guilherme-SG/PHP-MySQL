@@ -113,8 +113,15 @@ $result = $crud->read("users");
 //-> $result[1][password] -> k34ok435sdfo4563634oko3k234ok2o
 
 // Select all names only
-$result = $crud->read("users", null, "name");
+$result = $crud->read("users", null, ["name"]);
 //-> $result[0][name] -> Guilherme
+//-> $result[1][name] -> Yennifer
+
+// Select all ids and names only
+$result = $crud->read("users", null, ["name", "password"]);
+//-> $result[0][id] -> 1
+//-> $result[0][name] -> Guilherme
+//-> $result[1][id] -> 2
 //-> $result[1][name] -> Yennifer
 
 // Select Yennifer's passowrd
