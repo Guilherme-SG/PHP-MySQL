@@ -1,4 +1,10 @@
 <?php 
+namespace PHPMySql;
+use PHPMySql\MySqlConfig;
+use PHPMySql\MySqlExecuter;
+use PHPMySql\MySqlProtector;
+use PHPMySql\MySqlConnection;
+
 class MySqlCRUD {
 	private $executer;
 	private $protector;
@@ -21,7 +27,7 @@ class MySqlCRUD {
 	 * @param string $where
 	 * @return boolean
 	*/
-	public function insert($table, array $data){
+	public function insert($table, array $data) {
 		$data = $this->protector->arraySQLProtection($data);
 
 		// Separate fields from the values
@@ -51,7 +57,7 @@ class MySqlCRUD {
 	 * @param array||boolean $fields 
 	 * @return boolean||array
 	*/
-	public function read($table, $params = null, $fields = "*"){
+	public function read($table, $params = null, $fields = "*") {
 		$fields = ($fields == "*") ? $fields : implode(', ', $fields);
 		$params = ($params) ? " {$params}" : null;		
 
@@ -81,7 +87,7 @@ class MySqlCRUD {
 	 * @return boolean
 	*/
 	public function update($table, array $data, $where = null) {
-		$data = $this->protector->arraySQLProtection($data);
+		$data = $this->protector->arraySQLProtection($data);		
 
 		foreach ($data as $key => $value) {
 			$fields[] = "{$key} = '{$value}'";
@@ -111,5 +117,9 @@ class MySqlCRUD {
 		$query = "DELETE {$table} {$where}";
 		return $this->executer->execute($query);
 	}
+
+	public function getProtector() {
+		return $this->protector;
+	} 
 }
 ?>

@@ -1,8 +1,10 @@
 <?php 
+namespace PHPMySql;
+
 class MySqlProtector {
 	private $connection;
 
-	public function __construct(Mysqli $connection) {
+	public function __construct(\Mysqli $connection) {
 		$this->connection = $connection;
 	}
 

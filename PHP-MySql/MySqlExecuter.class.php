@@ -1,4 +1,10 @@
 <?php 
+namespace PHPMySql;
+use PHPMySql\MySqlConfig;
+use PHPMySql\MySqlConnection;
+use PHPMySql\Exceptions\MySQLException;
+use PHPMySql\Exceptions\MySQLDuplicateKeyException;
+
 class MySqlExecuter {
 	const MYSQL_DUPLICATE_KEY_ENTRY = 1062;
 	private $connection;

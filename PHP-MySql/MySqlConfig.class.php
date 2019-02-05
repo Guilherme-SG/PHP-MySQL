@@ -1,4 +1,6 @@
 <?php 
+namespace PHPMySql;
+
 class MySqlConfig{
 	private $host;
 	private $username;

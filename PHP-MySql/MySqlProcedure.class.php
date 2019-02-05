@@ -1,4 +1,7 @@
 <?php 
+namespace PHPMySql;
+use PHPMySql\MySqlExecuter;
+
 class MySqlProcedure {
 	private $executer;
 

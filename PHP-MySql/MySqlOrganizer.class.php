@@ -1,4 +1,6 @@
 <?php 
+namespace PHPMySql;
+
 class MySqlOrganizer {
 	public static function organizeInAssociativeArray($result) {
 		/* Each row will be within an enumerated 

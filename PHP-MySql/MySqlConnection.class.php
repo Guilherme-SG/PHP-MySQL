@@ -1,8 +1,10 @@
 <?php 
+namespace PHPMySql;
+
 class MySqlConnection {
 	public static function generate(MySqlConfig $config) {
 		// Open connection
-		$connection = new mysqli(
+		$connection = new \mysqli(
 			$config->getHost(), 
 			$config->getUsername(), 
 			$config->getPassword(), 
