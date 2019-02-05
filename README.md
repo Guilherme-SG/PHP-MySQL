@@ -1,40 +1,22 @@
 # PHP-MySql 
 
-PHP-MySql is library to make it easy to use mysql
+PHP-MySql is a library to make it easy to connect MySQL database with PHP.
 
-## MySqlConfig
-This class is required to config database connection, so you have to pass a instance of this classe to MySqlConnection object.
-Another way to set connection configs is putting default configuration at the constructor by class code and don't pass nothing to constructor, this way the object will use default configs.
+# Features
+- Execute CRUD;
+- Call procedure;
+- Protect data against sql injection;
 
-## MySqlConnection
-This class makes the connection with database receiving a MySqlConfig object.
-Call MySqlConnection::generate() to get a database connection. If is not possible to make connection or define the charset the script will die().
+# How to install
 
-## MySqlExecuter
-This class executes queries and returns their results. It closes the connection when the object is destroyed, so don't worry about that.
+Download this lib and add PHP-MySQL folder in your project. Just include autoloader.php file in your script and let it import others files when it's necessary.
 
-It also throws exceptions by each mysqli error.
-
-## MySqlCRUD
-This class builds CRUD queries and executes with a MySqlExecuter object. All methods are protected against SQL Injection
-
-## MySqlProcedure
-This class call procedures and returns their results. This class doesn't protect against SQL Injection, so use a MySqlProtector object to protect any data in procedure.
-
-## MySqlProtector
-This class is responsable for protect data against SQL Injection.
-
-## MySqlOrganizer
-This class is responsable for organize query data.
-
-## MySqlExceptions
-For while, I put exceptions here.
-
-# Protector
-
-## Usage
+# How to use
 ```PHP
+// Create a coonection with MySqlConfig class
 $config = new MySqlConfig('host', 'username', 'password', 'database', 'charset');
+
+// Protect your data with MySqlProtector class
 $protector = new MySqlProtector($config);
 
 $dataArray = ["data", "'' or '1'='1'", "data"];
@@ -48,9 +30,8 @@ $dataString = $protector->stringSQLProtection($dataString);
 MySqlConfig('localhost', 'root', 'root', 'users', 'utf8');
 ```
 
-# CRUD
+## CRUD
 
-## Usage
 
 ```PHP
 $config = new MySqlConfig('host', 'username', 'password', 'database', 'charset');
@@ -73,7 +54,7 @@ $crud->delete("table", "clausule");
 // register x field
 $result = $crud->read("table", "clausule", "fields");
 ``` 
-## Example
+### Example
 ```PHP
 $config = new MySqlConfig('localhost', 'root', 'root', 'users', 'utf8');
 $crud = new MySqlCRUD($config);
@@ -129,9 +110,7 @@ $result = $crud->read("users", "where name = 'Yennifer'", "password");
 //-> $result[0][password] -> k34ok435sdfo4563634oko3k234ok2o
 ```
 
-# Procedure
-
-## Usage
+## Procedure
 ```PHP
 $config = new MySqlConfig('host', 'username', 'password', 'database', 'charset');
 $procedure = new MySqlProcedure($config);
@@ -140,7 +119,7 @@ $procedure->callProcedure("procedure()");
 // Otherwise use this
 $procedure->callProcedureWithBooleanResult("procedure()");
 ```
-## Example
+### Example
 ```PHP
 $config = new MySqlConfig('localhost', 'root', 'root', 'users', 'utf8');
 $procedure = new MySqlProcedure($config);
