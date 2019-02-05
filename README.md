@@ -5,7 +5,7 @@ PHP-MySQL is a library that makes it easy to connect MySQL databases with PHP.
 # Features
 - CRUD;
 - Call procedure;
-- Protect data against sql injection;
+- Protect data against SQL injection;
 
 # How to install
 
