@@ -1,15 +1,15 @@
-# PHP-MySql 
+# PHP-MySQL
 
-PHP-MySql is a library to make it easy to connect MySQL database with PHP.
+PHP-MySQL is a library that makes it easy to connect MySQL databases with PHP.
 
 # Features
-- Execute CRUD;
+- CRUD;
 - Call procedure;
 - Protect data against sql injection;
 
 # How to install
 
-Download this lib and add PHP-MySQL folder in your project. Just include autoloader.php file in your script and let it import others files when it's necessary.
+Download this lib and add PHP-MySQL folder to your project. Include autoloader.php file in your script and let it import others files when it's necessary.
 
 # How to use
 ```PHP
@@ -114,8 +114,10 @@ $result = $crud->read("users", "where name = 'Yennifer'", "password");
 ```PHP
 $config = new MySqlConfig('host', 'username', 'password', 'database', 'charset');
 $procedure = new MySqlProcedure($config);
+
 // Use this when the return is a dataset
 $procedure->callProcedure("procedure()");
+
 // Otherwise use this
 $procedure->callProcedureWithBooleanResult("procedure()");
 ```
